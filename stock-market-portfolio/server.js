@@ -4,15 +4,12 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 const app = express()
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 8008
 
 app.use(cors())
 app.use(bodyParser.json())
 
-mongoose.connect('mongodb+srv://petargrujoski:1234@clustersemos.hovzwmd.mongodb.net/stock-market-db', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+mongoose.connect('mongodb+srv://petargrujoski:1234@clustersemos.hovzwmd.mongodb.net/stock-market-db')
 
 const stockSchema = new mongoose.Schema({
     company: String,
