@@ -17,6 +17,9 @@ const Watchlist = ({ watchlist }) => {
             <span style={{ color: getRandomColor() }}>
               ${stock.initial_price}
             </span>
+            <button onClick={() => removeFromWatchlist(stock.symbol)}>
+              Remove
+            </button>
           </li>
         ))}
       </ul>

@@ -33,6 +33,19 @@ app.get('/api/stocks', async (req, res) => {
     }
 })
 
+app.get('/api/stocks/:symbol', async (req, res) => {
+    try {
+      const stock = await Stock.findOne({ symbol: req.params.symbol });
+      if (!stock) {
+        return res.status(404).json({ message: 'Stock not found' });
+      }
+      res.json(stock);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal Server error' });
+    }
+  })
+
 app.post('/api/watchlist', async (req, res) => {
     try {
         const {

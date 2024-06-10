@@ -4,6 +4,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Stocks from "./components/Stocks";
 import Watchlist from "./components/Watchlist";
+import StockDetails from "./components/StockDetails";
 
 function App() {
   const [watchlist, setWatchlist] = useState([]);
@@ -26,6 +27,10 @@ function App() {
       });
   };
 
+  const removeFromWatchlist = (symbol) => {
+    setWatchlist(watchlist.filter((stock) => stock.symbol !== symbol));
+  };
+
   return (
     <Router>
       <Navbar />
@@ -36,8 +41,14 @@ function App() {
         />
         <Route
           path="/watchlist"
-          element={<Watchlist watchlist={watchlist} />}
+          element={
+            <Watchlist
+              watchlist={watchlist}
+              removeFromWatchlist={removeFromWatchlist}
+            />
+          }
         />
+        <Route path="/stocks/:symbol" element={<StockDetails />} />
       </Routes>
     </Router>
   );
