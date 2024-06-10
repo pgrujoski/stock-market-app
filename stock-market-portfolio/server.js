@@ -6,7 +6,8 @@ const bodyParser = require('body-parser')
 const app = express()
 const PORT = process.env.PORT || 8008
 
-app.use(cors())
+app.use(cors({ origin: 'http://localhost:5173' }));
+
 app.use(bodyParser.json())
 
 mongoose.connect('mongodb+srv://petargrujoski:1234@clustersemos.hovzwmd.mongodb.net/stock-market-db')

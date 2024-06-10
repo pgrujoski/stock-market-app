@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,12 +11,11 @@ const Stocks = ({ addToWatchlist }) => {
   const [stocks, setStocks] = useState([]);
 
   useEffect(() => {
-    fetch("https://localhost:8008/api/stocks")
+    fetch("http://localhost:8008/api/stocks")
       .then((res) => res.json())
       .then((data) => setStocks(data))
       .catch((err) => console.error("Error fetching data", err));
   }, []);
-  console.log(setStocks, "StocksData");
 
   const getRandomColor = () => {
     const colors = ["#FF0000", "#00FF00"];
@@ -28,37 +27,37 @@ const Stocks = ({ addToWatchlist }) => {
       <h1>Stock Market MERN app</h1>
       <h2>Stocks</h2>
       <ul>
-        {stocks.map((stock) => {
+        {stocks.map((stock) => (
           <li key={stock.symbol}>
-            {stock.company} ({stock.symol}) -
+            {stock.company} ({stock.symbol}) -
             <span style={{ color: getRandomColor() }}>
-              {" "}
               ${stock.initial_price}
             </span>
             <button onClick={() => addToWatchlist(stock)}>
               Add to my Watchlist
             </button>
-          </li>;
-        })}
+          </li>
+        ))}
       </ul>
     </div>
   );
 };
+
 const Watchlist = ({ watchlist }) => {
   const getRandomColor = () => {
     const colors = ["#FF0000", "#00FF00"];
     return colors[Math.floor(Math.random() * colors.length)];
   };
+
   return (
     <div className="App">
       <h1>Stock Market MERN app</h1>
-      <h2>MY Watchlist</h2>
+      <h2>My Watchlist</h2>
       <ul>
         {watchlist.map((stock) => (
           <li key={stock.symbol}>
             {stock.company} ({stock.symbol}) -
             <span style={{ color: getRandomColor() }}>
-              {" "}
               ${stock.initial_price}
             </span>
           </li>
@@ -70,6 +69,7 @@ const Watchlist = ({ watchlist }) => {
 
 function App() {
   const [watchlist, setWatchlist] = useState([]);
+
   const addToWatchlist = (stock) => {
     fetch("http://localhost:8008/api/watchlist", {
       method: "POST",
@@ -93,17 +93,17 @@ function App() {
       <nav>
         <NavLink to="/stocks">Stocks</NavLink>
         <NavLink to="/watchlist">Watchlist</NavLink>
-        <Routes>
-          <Route
-            path="/stocks"
-            element={<Stocks addToWatchlist={addToWatchlist} />}
-          />
-          <Route
-            path="/watchlist"
-            element={<Watchlist watchlist={watchlist} />}
-          />
-        </Routes>
       </nav>
+      <Routes>
+        <Route
+          path="/stocks"
+          element={<Stocks addToWatchlist={addToWatchlist} />}
+        />
+        <Route
+          path="/watchlist"
+          element={<Watchlist watchlist={watchlist} />}
+        />
+      </Routes>
     </Router>
   );
 }
