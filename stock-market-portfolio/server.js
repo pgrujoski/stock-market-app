@@ -10,7 +10,7 @@ app.use(cors({ origin: 'http://localhost:5173' }));
 
 app.use(bodyParser.json())
 
-mongoose.connect('mongodb+srv://petargrujoski:1234@clustersemos.hovzwmd.mongodb.net/stock-market-db')
+mongoose.connect('mongodb+srv://xxx@clustersemos.hovzwmd.mongodb.net/stock-market-db')
 
 const stockSchema = new mongoose.Schema({
     company: String,
