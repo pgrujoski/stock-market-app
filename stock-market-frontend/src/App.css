@@ -1,67 +1,97 @@
+:root {
+  --primary-color: #004d61;   
+  --secondary-color: #00b4d8; 
+  --background-color: #f1f1f1; 
+  --text-color: #ffffff;      
+  --button-hover-color: #048ba8; 
+  --nav-hover-color: #00a1c0; 
+}
+
 body {
-	font-family: 'Arial', sans-serif;
-	background-color: #d9d7ca;
-	margin: 0;
-	padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
 }
 
 .App {
-	text-align: center;
-	padding: 20px;
+  text-align: center;
+  padding: 20px;
 }
 
 h1 {
-	color: #1f454d;
+  color: var(--primary-color);
 }
 
 h2 {
-	color: #3c8d93;
-	margin-top: 30px;
+  color: var(--secondary-color);
+  margin-top: 30px;
 }
 
 ul {
-	list-style-type: none;
-	padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 li {
-	background-color: #3c8d93;
-	color: #d9d7ca;
-	padding: 10px;
-	margin: 10px 0;
-	border-radius: 5px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 button {
-	background-color: #1f454d;
-	color: #d9d7ca;
-	border: none;
-	padding: 8px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-	background-color: #3c8d93;
+  background-color: var(--button-hover-color);
 }
 
 nav {
-	background-color: #1f454d;
-	padding: 15px 0;
+  background-color: var(--primary-color);
+  padding: 15px 0;
 }
 
 nav a {
-	color: #d9d7ca;
-	text-decoration: none;
-	margin: 0 20px;
-	font-size: 18px;
-	transition: color 0.3s ease;
+  color: var(--text-color);
+  text-decoration: none;
+  margin: 0 20px;
+  font-size: 18px;
+  transition: color 0.3s ease;
 }
 
 nav a:hover {
-	color: #3c8d93;
+  color: var(--nav-hover-color);
+}
+
+
+@media (max-width: 768px) {
+  .App {
+    padding: 10px;
+  }
+
+  nav a {
+    margin: 0 10px;
+    font-size: 16px;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  button {
+    margin-top: 10px;
+  }
 }
