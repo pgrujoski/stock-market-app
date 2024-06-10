@@ -1,9 +1,9 @@
 :root {
   --primary-color: #004d61;   
   --secondary-color: #00b4d8; 
-  --background-color: #f1f1f1; 
+  --background-color: #f1f1f1;
   --text-color: #ffffff;      
-  --button-hover-color: #048ba8; 
+  --button-hover-color: #048ba8;
   --nav-hover-color: #00a1c0; 
 }
 
@@ -42,6 +42,33 @@ li {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+li .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+li .text {
+  display: flex;
+  align-items: center;
+}
+
+li .text > * {
+  margin-right: 10px;
+}
+
+li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+li a:hover {
+  text-decoration: underline;
+  color: var(--primary-color);
 }
 
 button {

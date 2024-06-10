@@ -34,16 +34,19 @@ const Stocks = ({ addToWatchlist }) => {
         <ul>
           {stocks.map((stock) => (
             <li key={stock.symbol}>
-              <Link to={`/stocks/${stock.symbol}`}>
-                {stock.company} ({stock.symbol})
-              </Link>{" "}
-              -
-              <span style={{ color: getRandomColor() }}>
-                ${stock.initial_price}
-              </span>
-              <button onClick={() => addToWatchlist(stock)}>
-                Add to my Watchlist
-              </button>
+              <div className="content">
+                <div className="text">
+                  <Link to={`/stocks/${stock.symbol}`}>
+                    {stock.company} ({stock.symbol})
+                  </Link>
+                  <span className="price" style={{ color: getRandomColor() }}>
+                    ${stock.initial_price}
+                  </span>
+                </div>
+                <button onClick={() => addToWatchlist(stock)}>
+                  Add to my Watchlist
+                </button>
+              </div>
             </li>
           ))}
         </ul>
