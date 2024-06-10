@@ -72,6 +72,20 @@ app.post('/api/watchlist', async (req, res) => {
     }
 })
 
+app.delete('/api/watchlist/:symbol', async (req, res) => {
+    try {
+      const symbol = req.params.symbol;
+      const result = await Stock.deleteOne({ symbol });
+      if (result.deletedCount === 0) {
+        return res.status(404).json({ message: 'Stock not found in watchlist' });
+      }
+      res.json({ message: 'Stock removed from watchlist successfully!' });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ message: 'Internal Server error' });
+    }
+  })
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 } )

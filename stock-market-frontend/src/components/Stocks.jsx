@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
-import SearchBar from "./SearchBar";
 
 const Stocks = ({ addToWatchlist }) => {
   const [stocks, setStocks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8008/api/stocks")
@@ -21,12 +19,6 @@ const Stocks = ({ addToWatchlist }) => {
       });
   }, []);
 
-  const filteredStocks = stocks.filter(
-    (stock) =>
-      stock.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      stock.symbol.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   const getRandomColor = () => {
     const colors = ["#FF0000", "#00FF00"];
     return colors[Math.floor(Math.random() * colors.length)];
@@ -35,13 +27,12 @@ const Stocks = ({ addToWatchlist }) => {
   return (
     <div className="App">
       <h1>Stock Market MERN app</h1>
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <h2>Stocks</h2>
       {loading ? (
         <LoadingSpinner />
       ) : (
         <ul>
-          {filteredStocks.map((stock) => (
+          {stocks.map((stock) => (
             <li key={stock.symbol}>
               <Link to={`/stocks/${stock.symbol}`}>
                 {stock.company} ({stock.symbol})

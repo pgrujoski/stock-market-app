@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -28,7 +28,17 @@ function App() {
   };
 
   const removeFromWatchlist = (symbol) => {
-    setWatchlist(watchlist.filter((stock) => stock.symbol !== symbol));
+    fetch(`http://localhost:8008/api/watchlist/${symbol}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        alert(data.message);
+        setWatchlist(watchlist.filter((stock) => stock.symbol !== symbol));
+      })
+      .catch((error) => {
+        console.log("Error removing from watchlist", error);
+      });
   };
 
   return (

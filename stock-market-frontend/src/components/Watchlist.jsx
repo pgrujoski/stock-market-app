@@ -1,6 +1,6 @@
 import React from "react";
 
-const Watchlist = ({ watchlist }) => {
+const Watchlist = ({ watchlist, removeFromWatchlist }) => {
   const getRandomColor = () => {
     const colors = ["#FF0000", "#00FF00"];
     return colors[Math.floor(Math.random() * colors.length)];
@@ -9,7 +9,7 @@ const Watchlist = ({ watchlist }) => {
   return (
     <div className="App">
       <h1>Stock Market MERN app</h1>
-      <h2>My Watchlist</h2>
+      <h2>MY Watchlist</h2>
       <ul>
         {watchlist.map((stock) => (
           <li key={stock.symbol}>
